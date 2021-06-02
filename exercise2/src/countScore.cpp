@@ -1,6 +1,7 @@
 #include "include/countScrabbleScore.hpp"
 #include <vector>
 #include <utility>
+#include <algorithm>
 	
 
 int countScrabbleScore(const std::string &word){
@@ -15,12 +16,15 @@ int countScrabbleScore(const std::string &word){
         {{'Q','Z'},10}
      };
 
+    auto sum = 0;
     for(auto character:word){
         for(auto pair:charactersToValue){
-            
+            if(std::find(pair.first.cbegin(),pair.first.cend(),character) != pair.first.cend()){
+                sum += pair.second;
+            }
         }
     }
 
 
-    return 0;
+    return sum;
 }
